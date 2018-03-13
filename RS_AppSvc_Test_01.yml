@@ -1,0 +1,86 @@
+---
+###### Variables to be passed to this playbook ######
+#
+#  username: [BIG-IP username]
+#  password: [BIG-IP password]
+#  service_name: You need to give this top level object a name.
+#  virtual_ip_address: [the front end IP of the load-balancing pool]
+#
+#  Web_Servers: you require an inventory group with pool member list
+#
+#  Examples:
+#  username: admin
+#  password: Input at runtime "prompt on launch"
+#  service_name: RS_AppSvc_Test_01
+#  virtual_ip_address: 10.128.10.20
+#
+# Author: Jason Decker - modified from Nathan Pierce F5
+###### https://github.com/sailracr/F5_Ansible_Automation ######
+
+- name: Verify {{ service_name }} doesn't already exists
+  connection: local
+  gather_facts: no
+  hosts: bigips
+  tasks:
+    - name: Get the L4 - L7 Service List
+      uri:
+        url: https://{{inventory_hostname}}/mgmt/tm/cloud/services/iapp/
+        validate_certs: no
+        user: "{{ username }}"
+        password: "{{ password }}"
+        return_content: yes
+      register: service_list
+
+    - name: Check if {{ service_name }} is installed
+      fail: msg="{{ service_name }} already exists.  Exiting!"
+      when: '"{{ service_name }}" in (service_list.content|from_json)["items"]'
+
+    - name: Check ISN't response
+      debug: msg="{{ service_name }} not found.  Installing!"
+      when: '"{{ service_name }}" not in (service_list.content|from_json)["items"]'
+
+    - name: build the JSON payload
+      template: src={{ playbook_dir }}/template_deploy.j2 dest={{ playbook_dir }}/deploy_payload.yml
+
+- name: Deploy L4-L7 Services
+  hosts: bigips
+  connection: local
+  tasks:
+  - name: Posting values to service template
+    uri:
+      url: https://{{ inventory_hostname }}/mgmt/tm/cloud/services/iapp/
+      validate_certs: no
+      method: POST
+      user: "{{ username }}"
+      password: "{{ password }}"
+      body: "{{ (lookup('template','{{ playbook_dir }}/deploy_payload.yml') | from_yaml) }}"
+      return_content: yes
+      body_format: json
+    register: post_response
+
+# print the full output of the response
+  - name: Full output
+    debug: msg="{{ (post_response|to_json) }}"
+
+# verify the installation succeeded
+- name: Verify {{ service_name }} installed
+  connection: local
+  gather_facts: no
+  hosts: bigips
+  tasks:
+    - name: Get the L4 - L7 Service List
+      uri:
+        url: https://{{inventory_hostname}}/mgmt/tm/cloud/services/iapp/
+        validate_certs: no
+        user: "{{ username }}"
+        password: "{{ password }}"
+        return_content: yes
+      register: service_list
+
+    - name: Check if {{ service_name }} is installed
+      debug: msg="{{ service_name }} found. Success!!"
+      when: '"{{ service_name }}" in (service_list.content|from_json)["items"]'
+
+    - name: Check ISN't response
+      fail: msg="{{ service_name }} not found. Deployment failed. Exiting!!"
+      when: '"{{ service_name }}" not in (service_list.content|from_json)["items"]'
