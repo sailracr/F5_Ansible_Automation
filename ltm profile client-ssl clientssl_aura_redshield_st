@@ -1,0 +1,63 @@
+ltm profile client-ssl clientssl_aura_redshield_standard_profile {
+    app-service none
+    cert default.crt
+    cert-key-chain {
+        default {
+            cert default.crt
+            key default.key
+        }
+    }
+    chain none
+    ciphers @SPEED:ECDHE+AES-GCM:ECDHE+3DES:ECDHE+HIGH:HIGH:AES:3DES:!MD5:!EXPORT:!DES:!EDH:!RC4:!SSLv3:!ADH
+    defaults-from clientssl
+    inherit-certkeychain false
+    key default.key
+    passphrase none
+    renegotiation disabled
+}
+ltm profile fastl4 redshield_standard_fastl4 {
+    app-service none
+    defaults-from fastL4
+}
+ltm profile http-compression redshield_standard_compression {
+    app-service none
+    defaults-from wan-optimized-compression
+    gzip-level 6
+    keep-accept-encoding enabled
+}
+ltm profile tcp redshield_standard_tcp {
+    app-service none
+    defaults-from tcp
+    init-cwnd 10
+    pkt-loss-ignore-burst 8
+    pkt-loss-ignore-rate 10000
+    proxy-buffer-high 196608
+    proxy-buffer-low 131072
+    selective-nack enabled
+    send-buffer-size 458752
+}
+ltm monitor tcp _RedShield_TCP_Monitor {
+    adaptive disabled
+    defaults-from tcp
+    destination *:*
+    interval 5
+    ip-dscp 0
+    recv none
+    recv-disable none
+    send none
+    time-until-up 0
+    timeout 16
+}
+ltm monitor tcp _RedShield_TCP_Monitor_Passthrough {
+    adaptive disabled
+    defaults-from tcp
+    destination *:*
+    interval 5
+    ip-dscp 0
+    recv none
+    recv-disable none
+    send none
+    time-until-up 0
+    timeout 16
+}
+
