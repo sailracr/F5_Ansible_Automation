@@ -122,7 +122,7 @@ tables:
     - State
     - AdvOptions
     rows:
-{% for host in groups.Web_Servers %}
+{% for host in groups.RS_Customer_1234_OCS %}
     - - '0'
       - '{{ host }}'
       - '80'
