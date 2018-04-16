@@ -20,7 +20,7 @@
 - name: Verify {{ service_name }} doesn't already exists
   connection: local
   gather_facts: no
-  hosts: bigips
+  hosts: BIGIPS
   tasks:
     - name: Get the L4 - L7 Service List
       uri:
@@ -43,7 +43,7 @@
       template: src={{ playbook_dir }}/template_deploy.j2 dest={{ playbook_dir }}/deploy_payload.yml
 
 - name: Deploy L4-L7 Services
-  hosts: bigips
+  hosts: BIGIPS
   connection: local
   tasks:
   - name: Posting values to service template
@@ -66,7 +66,7 @@
 - name: Verify {{ service_name }} installed
   connection: local
   gather_facts: no
-  hosts: bigips
+  hosts: BIGIPS
   tasks:
     - name: Get the L4 - L7 Service List
       uri:
