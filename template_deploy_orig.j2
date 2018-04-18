@@ -6,32 +6,32 @@ vars:
   extensions__Field2: ''
   extensions__Field3: ''
   feature__easyL4Firewall: auto
-  feature__insertXForwardedFor: auto
-  feature__redirectToHTTPS: auto
+  feature__insertXForwardedFor: enabled
+  feature__redirectToHTTPS: enabled
   feature__securityEnableHSTS: disabled
   feature__sslEasyCipher: disabled
-  feature__statsHTTP: auto
-  feature__statsTLS: auto
+  feature__statsHTTP: disabled
+  feature__statsTLS: disabled
   iapp__apmDeployMode: preserve-bypass
   iapp__appStats: enabled
-  iapp__asmDeployMode: preserve-bypass
+  iapp__asmDeployMode: redeploy-block
   iapp__logLevel: '7'
   iapp__mode: auto
   iapp__routeDomain: auto
   iapp__strictUpdates: enabled
-  l7policy__defaultASM: bypass
+  l7policy__defaultASM: bundled:REDSHIELD_ASM_HTTPS_201709
   l7policy__defaultL7DOS: bypass
   l7policy__strategy: "/Common/first-match"
   pool__DefaultPoolIndex: '0'
   pool__MemberDefaultPort: ''
   pool__addr: "{{ virtual_ip_address }}"
   pool__mask: 255.255.255.255
-  pool__port: '80'
+  pool__port: '443'
   vs__AdvOptions: ''
   vs__AdvPolicies: ''
   vs__AdvProfiles: ''
   vs__ConnectionLimit: '0'
-  vs__Description: ''
+  vs__Description: "RS Customer 1234 Automated Deployment Test 01"
   vs__IpProtocol: tcp
   vs__Irules: ''
   vs__Name: "{{ service_name }}_default_vs_80"
@@ -80,12 +80,9 @@ tables:
     - Target
     - Parameter
     rows:
-    - - '0'
-      - 'asm/request/enable/policy'
-      - 'bundled:REDSHIELD_ASM_HTTPS_201709'
-    - - 'default'
-      - 'asm/request/enable/policy'
-      - 'bundled:REDSHIELD_ASM_HTTPS_201709'
+    - - ''
+      - ''
+      - ''
   l7policy__rulesMatch:
     columns:
     - Group
@@ -111,8 +108,8 @@ tables:
     - Options
     rows:
     - - '0'
-      - "RS_TCP_mon"
-      - 'TCP'
+      - "/Common/http"
+      - ''
       - ''
   pool__Members:
     columns:
@@ -128,7 +125,7 @@ tables:
 {% for host in groups.RS_Customer_1234_OCS %}
     - - '0'
       - '{{ host }}'
-      - '443'
+      - '80'
       - '0'
       - '1'
       - '0'
@@ -154,7 +151,7 @@ tables:
     columns:
     - Resource
     rows:
-    - - "asm:REDSHIELD_ASM_HTTPS_201709"
+    - - ''
   vs__Listeners:
     columns:
     - Listener
