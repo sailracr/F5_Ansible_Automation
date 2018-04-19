@@ -1,13 +1,13 @@
 ---
 name: "{{ service_name }}"
-template: appsvcs_integration_v2.0.004_REDSHIELD
+template: appsvcs_integration_v2.0.004_RS_2018-04-19
 vars:
   extensions__Field1: ''
   extensions__Field2: ''
   extensions__Field3: ''
   feature__easyL4Firewall: auto
-  feature__insertXForwardedFor: auto
-  feature__redirectToHTTPS: auto
+  feature__insertXForwardedFor: "enabled"
+  feature__redirectToHTTPS: enabled
   feature__securityEnableHSTS: disabled
   feature__sslEasyCipher: disabled
   feature__statsHTTP: auto
@@ -23,10 +23,10 @@ vars:
   l7policy__defaultL7DOS: bypass
   l7policy__strategy: "/Common/first-match"
   pool__DefaultPoolIndex: '0'
-  pool__MemberDefaultPort: ''
+  pool__MemberDefaultPort: '443'
   pool__addr: "{{ virtual_ip_address }}"
   pool__mask: 255.255.255.255
-  pool__port: '80'
+  pool__port: '443'
   vs__AdvOptions: ''
   vs__AdvPolicies: ''
   vs__AdvProfiles: ''
@@ -34,7 +34,7 @@ vars:
   vs__Description: ''
   vs__IpProtocol: tcp
   vs__Irules: ''
-  vs__Name: "{{ service_name }}_default_vs_80"
+  vs__Name: "{{ service_name }}_default_vs_443"
   vs__OptionConnectionMirroring: disabled
   vs__OptionSourcePort: preserve
   vs__ProfileAccess: ''
