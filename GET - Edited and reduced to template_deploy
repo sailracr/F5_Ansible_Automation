@@ -1,0 +1,209 @@
+---
+kind: tm:sys:application:service:servicestate
+name: RS_AppSvc_Manual_Test_01_ASM
+partition: Common
+subPath: RS_AppSvc_Manual_Test_01_ASM.app
+fullPath: "/Common/RS_AppSvc_Manual_Test_01_ASM.app/RS_AppSvc_Manual_Test_01_ASM"
+generation: 15407
+selfLink: https://localhost/mgmt/tm/sys/application/service/~Common~RS_AppSvc_Manual_Test_01_ASM.app~RS_AppSvc_Manual_Test_01_ASM?ver=13.1.0.3
+description: Deployed by appsvcs_integration_v2.0.004 in Standalone mode on 04/18/18
+  15:45:47
+deviceGroup: none
+inheritedDevicegroup: 'true'
+inheritedTrafficGroup: 'true'
+strictUpdates: disabled
+template: "/Common/appsvcs_integration_v2.0.004_REDSHIELD"
+templateReference:
+  link: https://localhost/mgmt/tm/sys/application/template/~Common~appsvcs_integration_v2.0.004_REDSHIELD?ver=13.1.0.3
+templateModified: 'no'
+trafficGroup: "/Common/traffic-group-1"
+trafficGroupReference:
+  link: https://localhost/mgmt/tm/cm/traffic-group/~Common~traffic-group-1?ver=13.1.0.3
+tables:
+feature__easyL4FirewallBlacklist:
+  columnNames:
+  - CIDRRange
+  rows:
+  - row:
+    - ''
+feature__easyL4FirewallSourceList
+  columnNames:
+  - CIDRRange
+  rows:
+  - row:
+    - 0.0.0.0/0
+l7policy__rulesAction
+  columnNames:
+  - Group
+  - Target
+  - Parameter
+  rows:
+  - row:
+    - default
+    - asm/request/enable/policy
+    - bundled:REDSHIELD_ASM_HTTPS_201709
+  - row:
+    - '0'
+    - asm/request/enable/policy
+    - bundled:REDSHIELD_ASM_HTTPS_201709
+l7policy__rulesMatch
+  columnNames:
+  - Group
+  - Operand
+  - Negate
+  - Condition
+  - Value
+  - CaseSensitive
+  - Missing
+  rows:
+  - row:
+    - default
+    - http-host/request/all
+    - 'no'
+    - equals
+    - www.client1234.com
+    - 'no'
+    - 'no'
+monitor__Monitors
+  columnNames:
+  - Index
+  - Name
+  - Type
+  - Options
+  rows:
+  - row:
+    - '0'
+    - RS_TCP_mon
+    - TCP
+    - ''
+  - row:
+    - '1'
+    - RS_http_mon
+    - http
+    - send=GET /\r\n
+  - row:
+    - '2'
+    - RS_https_mon
+    - http
+    - send=GET /\r\n
+pool__Members
+  columnNames:
+  - Index
+  - IPAddress
+  - Port
+  - ConnectionLimit
+  - Ratio
+  - PriorityGroup
+  - State
+  - AdvOptions
+  rows:
+  - row:
+    - '0'
+    - 10.111.0.101
+    - '443'
+    - '0'
+    - '1'
+    - '0'
+    - enabled
+    - ''
+  - row:
+    - '0'
+    - 10.111.0.102
+    - '443'
+    - '0'
+    - '1'
+    - '0'
+    - enabled
+    - ''
+pool__Pools
+  columnNames:
+  - Index
+  - Name
+  - Description
+  - LbMethod
+  - Monitor
+  - AdvOptions
+  rows:
+  - row:
+    - '0'
+    - Client_1234_OCS_pool
+    - ''
+    - round-robin
+    - '0'
+    - ''
+vs__BundledItems
+  columns:
+  - Resource
+  rows:
+  - row:
+    - asm:REDSHIELD_ASM_HTTPS_201709
+vs__Listeners
+  columnNames:
+  - Listener
+  - Destination
+  rows:
+  - row:
+    - ''
+    - ''
+variables:
+extensions__Field1: ''
+extensions__Field2: ''
+extensions__Field3: ''
+feature__easyL4Firewall: auto
+feature__insertXForwardedFor: enabled
+feature__redirectToHTTPS: enabled
+feature__securityEnableHSTS: disabled
+feature__sslEasyCipher: disabled
+feature__statsHTTP: disabled
+feature__statsTLS: disabled
+iapp__apmDeployMode: preserve-bypass
+iapp__appStats: disabled
+iapp__asmDeployMode: redeploy-block
+iapp__logLevel: '7'
+iapp__mode: auto
+iapp__routeDomain: auto
+iapp__strictUpdates: enabled
+l7policy__defaultASM: "bundled:REDSHIELD_ASM_HTTPS_201709"
+l7policy__defaultL7DOS: "/Common/RS_DoS"
+l7policy__strategy: "/Common/first-match"
+pool__DefaultPoolIndex: '0'
+pool__MemberDefaultPort: '443'
+pool__addr "{{virtual_ip_address }}""
+pool__mask: 255.255.255.255
+pool__port: '443'
+vs__AdvOptions: ''
+vs__AdvPolicies: ''
+vs__AdvProfiles: ''
+vs__ConnectionLimit: '0'
+vs__Description: ''
+vs__IpProtocol: tcp
+vs__Irules: ''
+vs__Name: "{{ service_name }}_default_vs_443"
+vs__OptionConnectionMirroring: "disabled"
+vs__OptionSourcePort: preserve
+vs__ProfileAccess: ''
+vs__ProfileAnalytics: ''
+vs__ProfileClientProtocol: "create:type=tcp;defaults-from=/Common/redshield_standard_tcp"
+vs__ProfileClientSSL: "create:defaults-from=/Common/clientssl-insecure-compatible"
+vs__ProfileClientSSLAdvOptions: ''
+vs__ProfileClientSSLCert: "/Common/default.crt"
+vs__ProfileClientSSLChain: ''
+vs__ProfileClientSSLCipherString: DEFAULT
+vs__ProfileClientSSLKey: "/Common/default.key"
+vs__ProfileCompression: "create:defaults-from=redshield_standard_compression"
+vs__ProfileConnectivity: ''
+vs__ProfileDefaultPersist: ''
+vs__ProfileFallbackPersist: ''
+vs__ProfileHTTP: "create:defaults-from=http"
+vs__ProfileOneConnect: "create:defaults-from=/Common/oneconnect"
+vs__ProfilePerRequest: ''
+vs__ProfileRequestLogging: ''
+vs__ProfileSecurityDoS: "/Common/RS_DoS"
+vs__ProfileSecurityIPBlacklist: none
+vs__ProfileSecurityLogProfiles: ''
+vs__ProfileServerProtocol: "create:type=tcp;defaults-from=/Common/redshield_standard_tcp"
+vs__ProfileServerSSL: "create:defaults-from=/Common/serverssl"
+vs__RouteAdv: disabled
+vs__SNATConfig: automap
+vs__SourceAddress: 0.0.0.0/0
+vs__VirtualAddrAdvOptions: ''
