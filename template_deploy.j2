@@ -13,7 +13,7 @@ vars:
   feature__statsHTTP: disabled
   feature__statsTLS: disabled
   iapp__apmDeployMode: preserve-bypass
-  iapp__appStats: enabled
+  iapp__appStats: disableds
   iapp__asmDeployMode: redeploy-block
   iapp__logLevel: '7'
   iapp__mode: auto
@@ -51,14 +51,14 @@ vars:
   vs__ProfileDefaultPersist: ''
   vs__ProfileFallbackPersist: ''
   vs__ProfileHTTP: "create:defaults-from=http"
-  vs__ProfileOneConnect: ''
+  vs__ProfileOneConnect: "create:defaults-from=/Common/oneconnect"
   vs__ProfilePerRequest: ''
   vs__ProfileRequestLogging: ''
-  vs__ProfileSecurityDoS: ''
+  vs__ProfileSecurityDoS: "/Common/RS_DoS"
   vs__ProfileSecurityIPBlacklist: none
   vs__ProfileSecurityLogProfiles: ''
-  vs__ProfileServerProtocol: "/Common/tcp-lan-optimized"
-  vs__ProfileServerSSL: ''
+  vs__ProfileServerProtocol: "create:type=tcp;defaults-from=/Common/redshield_standard_tcp"
+  vs__ProfileServerSSL: "create:defaults-from=/Common/serverssl"
   vs__RouteAdv: disabled
   vs__SNATConfig: automap
   vs__SourceAddress: 0.0.0.0/0
