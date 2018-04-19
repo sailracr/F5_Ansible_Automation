@@ -10,17 +10,17 @@ vars:
   feature__redirectToHTTPS: enabled
   feature__securityEnableHSTS: disabled
   feature__sslEasyCipher: disabled
-  feature__statsHTTP: auto
-  feature__statsTLS: auto
+  feature__statsHTTP: disabled
+  feature__statsTLS: disabled
   iapp__apmDeployMode: preserve-bypass
   iapp__appStats: enabled
-  iapp__asmDeployMode: preserve-bypass
+  iapp__asmDeployMode: redeploy-block
   iapp__logLevel: '7'
   iapp__mode: auto
   iapp__routeDomain: auto
   iapp__strictUpdates: enabled
-  l7policy__defaultASM: bypass
-  l7policy__defaultL7DOS: bypass
+  l7policy__defaultASM: "bundled:REDSHIELD_ASM_HTTPS_201709"
+  l7policy__defaultL7DOS: "/Common/RS_DoS"
   l7policy__strategy: "/Common/first-match"
   pool__DefaultPoolIndex: '0'
   pool__MemberDefaultPort: '443'
@@ -39,14 +39,14 @@ vars:
   vs__OptionSourcePort: preserve
   vs__ProfileAccess: ''
   vs__ProfileAnalytics: ''
-  vs__ProfileClientProtocol: "/Common/tcp-wan-optimized"
-  vs__ProfileClientSSL: ''
+  vs__ProfileClientProtocol: "create:type=tcp;defaults-from=/Common/redshield_standard_tcp"
+  vs__ProfileClientSSL: "create:defaults-from=/Common/clientssl-insecure-compatible"
   vs__ProfileClientSSLAdvOptions: ''
-  vs__ProfileClientSSLCert: ''
+  vs__ProfileClientSSLCert: "/Common/default.crt"
   vs__ProfileClientSSLChain: ''
   vs__ProfileClientSSLCipherString: DEFAULT
-  vs__ProfileClientSSLKey: ''
-  vs__ProfileCompression: ''
+  vs__ProfileClientSSLKey: "/Common/default.key"
+  vs__ProfileCompression: "create:defaults-from=redshield_standard_compression"
   vs__ProfileConnectivity: ''
   vs__ProfileDefaultPersist: ''
   vs__ProfileFallbackPersist: ''
