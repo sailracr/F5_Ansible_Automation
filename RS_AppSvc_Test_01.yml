@@ -6,13 +6,13 @@
 #  service_name: You need to give this top level object a name.
 #  virtual_ip_address: [the front end IP of the load-balancing pool]
 #
-#  Web_Servers: you require an inventory group with pool member list
+#  RS_Customer_1234_OCS: Required inventory group with pool member list
 #
 #  Examples:
 #  username: admin
-#  password: Input at runtime "prompt on launch"
-#  service_name: RS_AppSvc_Test_01
-#  virtual_ip_address: 10.128.10.20
+#  password: Input at runtime "prompt on launch" (temp set to admin)
+#  service_name: RS_App_Svc_Customer_1234_Ansible_Final
+#  virtual_ip_address: 10.99.99.110
 #
 # Author: Jason Decker - modified from Nathan Pierce F5
 ###### https://github.com/sailracr/F5_Ansible_Automation ######
