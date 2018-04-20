@@ -1,0 +1,502 @@
+{
+  "kind": "tm:sys:application:service:servicestate",
+  "name": "RS_App_Svc_Customer_1234_Ansible_Final",
+  "partition": "Common",
+  "subPath": "RS_App_Svc_Customer_1234_Ansible_Final.app",
+  "fullPath": "/Common/RS_App_Svc_Customer_1234_Ansible_Final.app/RS_App_Svc_Customer_1234_Ansible_Final",
+  "generation": 22987,
+  "selfLink": "https://localhost/mgmt/tm/sys/application/service/~Common~RS_App_Svc_Customer_1234_Ansible_Final.app~RS_App_Svc_Customer_1234_Ansible_Final?ver=13.1.0.3",
+  "description": "Deployed by appsvcs_integration_v2.0.004 in Standalone mode on 04/20/18 10:40:43",
+  "deviceGroup": "none",
+  "inheritedDevicegroup": "true",
+  "inheritedTrafficGroup": "true",
+  "strictUpdates": "disabled",
+  "template": "/Common/appsvcs_integration_v2.0.004_RS_2018-04-19",
+  "templateReference": {
+    "link": "https://localhost/mgmt/tm/sys/application/template/~Common~appsvcs_integration_v2.0.004_RS_2018-04-19?ver=13.1.0.3"
+  },
+  "templateModified": "no",
+  "trafficGroup": "/Common/traffic-group-1",
+  "trafficGroupReference": {
+    "link": "https://localhost/mgmt/tm/cm/traffic-group/~Common~traffic-group-1?ver=13.1.0.3"
+  },
+  "tables": [
+    {
+      "name": "feature__easyL4FirewallBlacklist",
+      "columnNames": [
+        "CIDRRange"
+      ],
+      "rows": [
+        {
+          "row": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "feature__easyL4FirewallSourceList",
+      "columnNames": [
+        "CIDRRange"
+      ],
+      "rows": [
+        {
+          "row": [
+            "0.0.0.0/0"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "l7policy__rulesAction",
+      "columnNames": [
+        "Group",
+        "Target",
+        "Parameter"
+      ],
+      "rows": [
+        {
+          "row": [
+            "0",
+            "asm/request/enable/policy",
+            "bundled:REDSHIELD_ASM_HTTPS_201709"
+          ]
+        },
+        {
+          "row": [
+            "default",
+            "asm/request/enable/policy",
+            "bundled:REDSHIELD_ASM_HTTPS_201709"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "l7policy__rulesMatch",
+      "columnNames": [
+        "Group",
+        "Operand",
+        "Negate",
+        "Condition",
+        "Value",
+        "CaseSensitive",
+        "Missing"
+      ],
+      "rows": [
+        {
+          "row": [
+            "",
+            "",
+            "no",
+            "equals",
+            "",
+            "no",
+            "no"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "monitor__Monitors",
+      "columnNames": [
+        "Index",
+        "Name",
+        "Type",
+        "Options"
+      ],
+      "rows": [
+        {
+          "row": [
+            "0",
+            "RS_TCP_mon",
+            "TCP",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pool__Members",
+      "columnNames": [
+        "Index",
+        "IPAddress",
+        "Port",
+        "ConnectionLimit",
+        "Ratio",
+        "PriorityGroup",
+        "State",
+        "AdvOptions"
+      ],
+      "rows": [
+        {
+          "row": [
+            "0",
+            "10.111.0.101",
+            "443",
+            "0",
+            "1",
+            "0",
+            "enabled",
+            ""
+          ]
+        },
+        {
+          "row": [
+            "0",
+            "10.111.0.102",
+            "443",
+            "0",
+            "1",
+            "0",
+            "enabled",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pool__Pools",
+      "columnNames": [
+        "Index",
+        "Name",
+        "Description",
+        "LbMethod",
+        "Monitor",
+        "AdvOptions"
+      ],
+      "rows": [
+        {
+          "row": [
+            "0",
+            "",
+            "",
+            "round-robin",
+            "0",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vs__BundledItems",
+      "columnNames": [
+        "Resource"
+      ],
+      "rows": [
+        {
+          "row": [
+            "asm:REDSHIELD_ASM_HTTPS_201709"
+          ]
+        },
+        {
+          "row": [
+            "irule:RS_debug_irule"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vs__Listeners",
+      "columnNames": [
+        "Listener",
+        "Destination"
+      ],
+      "rows": [
+        {
+          "row": [
+            "",
+            ""
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "name": "extensions__Field1",
+      "encrypted": "no"
+    },
+    {
+      "name": "extensions__Field2",
+      "encrypted": "no"
+    },
+    {
+      "name": "extensions__Field3",
+      "encrypted": "no"
+    },
+    {
+      "name": "feature__easyL4Firewall",
+      "encrypted": "no",
+      "value": "auto"
+    },
+    {
+      "name": "feature__insertXForwardedFor",
+      "encrypted": "no",
+      "value": "enabled"
+    },
+    {
+      "name": "feature__redirectToHTTPS",
+      "encrypted": "no",
+      "value": "enabled"
+    },
+    {
+      "name": "feature__securityEnableHSTS",
+      "encrypted": "no",
+      "value": "disabled"
+    },
+    {
+      "name": "feature__sslEasyCipher",
+      "encrypted": "no",
+      "value": "disabled"
+    },
+    {
+      "name": "feature__statsHTTP",
+      "encrypted": "no",
+      "value": "disabled"
+    },
+    {
+      "name": "feature__statsTLS",
+      "encrypted": "no",
+      "value": "disabled"
+    },
+    {
+      "name": "iapp__apmDeployMode",
+      "encrypted": "no",
+      "value": "preserve-bypass"
+    },
+    {
+      "name": "iapp__appStats",
+      "encrypted": "no",
+      "value": "disableds"
+    },
+    {
+      "name": "iapp__asmDeployMode",
+      "encrypted": "no",
+      "value": "redeploy-block"
+    },
+    {
+      "name": "iapp__logLevel",
+      "encrypted": "no",
+      "value": "7"
+    },
+    {
+      "name": "iapp__mode",
+      "encrypted": "no",
+      "value": "auto"
+    },
+    {
+      "name": "iapp__routeDomain",
+      "encrypted": "no",
+      "value": "auto"
+    },
+    {
+      "name": "iapp__strictUpdates",
+      "encrypted": "no",
+      "value": "enabled"
+    },
+    {
+      "name": "l7policy__defaultASM",
+      "encrypted": "no",
+      "value": "bundled:REDSHIELD_ASM_HTTPS_201709"
+    },
+    {
+      "name": "l7policy__defaultL7DOS",
+      "encrypted": "no",
+      "value": "/Common/RS_DoS"
+    },
+    {
+      "name": "l7policy__strategy",
+      "encrypted": "no",
+      "value": "/Common/first-match"
+    },
+    {
+      "name": "pool__DefaultPoolIndex",
+      "encrypted": "no",
+      "value": "0"
+    },
+    {
+      "name": "pool__MemberDefaultPort",
+      "encrypted": "no",
+      "value": "443"
+    },
+    {
+      "name": "pool__addr",
+      "encrypted": "no",
+      "value": "10.99.99.110"
+    },
+    {
+      "name": "pool__mask",
+      "encrypted": "no",
+      "value": "255.255.255.255"
+    },
+    {
+      "name": "pool__port",
+      "encrypted": "no",
+      "value": "443"
+    },
+    {
+      "name": "vs__AdvOptions",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__AdvPolicies",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__AdvProfiles",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ConnectionLimit",
+      "encrypted": "no",
+      "value": "0"
+    },
+    {
+      "name": "vs__Description",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__IpProtocol",
+      "encrypted": "no",
+      "value": "tcp"
+    },
+    {
+      "name": "vs__Irules",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__Name",
+      "encrypted": "no",
+      "value": "RS_App_Svc_Customer_1234_Ansible_Final_default_vs_443"
+    },
+    {
+      "name": "vs__OptionConnectionMirroring",
+      "encrypted": "no",
+      "value": "disabled"
+    },
+    {
+      "name": "vs__OptionSourcePort",
+      "encrypted": "no",
+      "value": "preserve"
+    },
+    {
+      "name": "vs__ProfileAccess",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileAnalytics",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileClientProtocol",
+      "encrypted": "no",
+      "value": "create:type=tcp;defaults-from=/Common/redshield_standard_tcp"
+    },
+    {
+      "name": "vs__ProfileClientSSL",
+      "encrypted": "no",
+      "value": "create:defaults-from=/Common/clientssl-insecure-compatible"
+    },
+    {
+      "name": "vs__ProfileClientSSLAdvOptions",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileClientSSLCert",
+      "encrypted": "no",
+      "value": "/Common/default.crt"
+    },
+    {
+      "name": "vs__ProfileClientSSLChain",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileClientSSLCipherString",
+      "encrypted": "no",
+      "value": "DEFAULT"
+    },
+    {
+      "name": "vs__ProfileClientSSLKey",
+      "encrypted": "no",
+      "value": "/Common/default.key"
+    },
+    {
+      "name": "vs__ProfileCompression",
+      "encrypted": "no",
+      "value": "create:defaults-from=redshield_standard_compression"
+    },
+    {
+      "name": "vs__ProfileConnectivity",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileDefaultPersist",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileFallbackPersist",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileHTTP",
+      "encrypted": "no",
+      "value": "create:defaults-from=http"
+    },
+    {
+      "name": "vs__ProfileOneConnect",
+      "encrypted": "no",
+      "value": "create:defaults-from=/Common/oneconnect"
+    },
+    {
+      "name": "vs__ProfilePerRequest",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileRequestLogging",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileSecurityDoS",
+      "encrypted": "no",
+      "value": "/Common/RS_DoS"
+    },
+    {
+      "name": "vs__ProfileSecurityIPBlacklist",
+      "encrypted": "no",
+      "value": "none"
+    },
+    {
+      "name": "vs__ProfileSecurityLogProfiles",
+      "encrypted": "no"
+    },
+    {
+      "name": "vs__ProfileServerProtocol",
+      "encrypted": "no",
+      "value": "create:type=tcp;defaults-from=/Common/redshield_standard_tcp"
+    },
+    {
+      "name": "vs__ProfileServerSSL",
+      "encrypted": "no",
+      "value": "create:defaults-from=/Common/serverssl"
+    },
+    {
+      "name": "vs__RouteAdv",
+      "encrypted": "no",
+      "value": "disabled"
+    },
+    {
+      "name": "vs__SNATConfig",
+      "encrypted": "no",
+      "value": "automap"
+    },
+    {
+      "name": "vs__SourceAddress",
+      "encrypted": "no",
+      "value": "0.0.0.0/0"
+    },
+    {
+      "name": "vs__VirtualAddrAdvOptions",
+      "encrypted": "no"
+    }
+  ]
+}
